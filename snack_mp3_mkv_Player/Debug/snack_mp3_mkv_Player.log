@@ -1,0 +1,4 @@
+﻿  snack.cpp
+c:\users\jin\desktop\temp\미래에쓰일포트폴리오 자료들\뱀게임_1,2,3ver\visual std c언어 환경 뱀게임\snack_mp3_mkv_player\snack.cpp(52): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
+c:\users\jin\desktop\temp\미래에쓰일포트폴리오 자료들\뱀게임_1,2,3ver\visual std c언어 환경 뱀게임\snack_mp3_mkv_player\snack.cpp(140): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
+  snack_mp3_mkv_Player.vcxproj -> C:\Users\jin\Desktop\temp\미래에쓰일포트폴리오 자료들\뱀게임_1,2,3ver\Visual Std C언어 환경 뱀게임\Debug\snack_mp3_mkv_Player.exe
