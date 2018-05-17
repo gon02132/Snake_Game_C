@@ -1,4 +1,4 @@
-#include<stdio.h>
+ï»¿#include<stdio.h>
 #include<Windows.h>
 #include<conio.h>
 #include<time.h>
@@ -8,13 +8,14 @@
 #include "Mmsystem.h"
 #include "Digitalv.h"
 
+
 typedef unsigned char Bool;
 
 #define ADDRESS_TEMP "mp3folder\\"
 #define FILE_SIZE 50
 #define True 1
 #define False 0
-#define SIZE 15 // ¸ÊÅ©±â Á¶Á¤°¡´É 0~30 ±ÇÀå
+#define SIZE 15 // ë§µí¬ê¸° ì¡°ì •ê°€ëŠ¥ 0~30 ê¶Œì¥
 #define Win_Count SIZE*SIZE
 #define SPEED 80
 
@@ -55,14 +56,14 @@ void MP3_gotoxy(int x, int a) {
 	cursorInfo.dwSize = 1;
 	cursorInfo.bVisible = FALSE;
 	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
-	//Ä¿¼­ ±¸Á¶Ã¼ ¼±¾ğ, Ä¿¼­ÀÇµÎ²² 1 ,Ä¿¼­¸¦ ¼û±è, ½ÇÇà 
+	//ì»¤ì„œ êµ¬ì¡°ì²´ ì„ ì–¸, ì»¤ì„œì˜ë‘ê»˜ 1 ,ì»¤ì„œë¥¼ ìˆ¨ê¹€, ì‹¤í–‰ 
 
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
-	//52ÀÇ ±¸Á¶Ã¼¸¦ ¼±¾ğ¹ŞÀº ÁÂÇ¥À§Ä¡¿¡ Ä¿¼­¸¦ °¡Á®´Ù³õÀ½
+	//52ì˜ êµ¬ì¡°ì²´ë¥¼ ì„ ì–¸ë°›ì€ ì¢Œí‘œìœ„ì¹˜ì— ì»¤ì„œë¥¼ ê°€ì ¸ë‹¤ë†“ìŒ
 	if (a == 1)
 		printf(" ");
 	if (a == 2)
-		printf("¡Ø");
+		printf("â€»");
 
 }
 
@@ -87,34 +88,34 @@ int main(void) {
 	Sound_Play();
 
 	system("cls");
-	//±âº» Å×µÎ¸® ¼¼ÆÃ ½ÃÀÛ
+	//ê¸°ë³¸ í…Œë‘ë¦¬ ì„¸íŒ… ì‹œì‘
 	Random_Creat(&R_x, &R_y);
-	gotoxy(R_x, R_y, 0, "¡Ú");
+	gotoxy(R_x, R_y, 0, "â˜…");
 	for (i = 0; i < SIZE; i++) {
-		gotoxy(i, -1, 0, "¦¡");
-		gotoxy(i, SIZE, 0, "¦¡");
+		gotoxy(i, -1, 0, "â”€");
+		gotoxy(i, SIZE, 0, "â”€");
 	}
-	gotoxy(i, -1, 0, "¦¤");
-	gotoxy(i, SIZE, 0, "¦¥");
-	gotoxy(SIZE + 2 + 5, 1, 0, "W = À§");
-	gotoxy(SIZE + 2, 2, 0, "A = ¿ŞÂÊ  S = ¹Ø  D = ¿À¸¥ÂÊ");
-	gotoxy(SIZE + 2 + 3, 3, 0, "ÀÌ¿Ü Å° = ÀÏ½ÃÁ¤Áö");
+	gotoxy(i, -1, 0, "â”");
+	gotoxy(i, SIZE, 0, "â”˜");
+	gotoxy(SIZE + 2 + 5, 1, 0, "W = ä¸Š");
+	gotoxy(SIZE + 2, 2, 0, "A = å·¦  S = ä¸‹  D = å³");
+	gotoxy(SIZE + 2 + 3, 3, 0, "ä»¥å¤– ã€€= STOP");
 	gotoxy(SIZE + 5, SIZE, -2, " ");
-	//±âº» Å×µÎ¸® ¼¼ÆÃ ³¡
+	//ê¸°ë³¸ í…Œë‘ë¦¬ ì„¸íŒ… ë
 
 	while (true) {
 		snack[x][y] = Count++;
-		if (_kbhit()) {   //Å°¸¦ ÀÔ·Â½Ã 1, ºñÀÔ·Â½Ã 0
+		if (_kbhit()) {   //í‚¤ë¥¼ ì…ë ¥ì‹œ 1, ë¹„ì…ë ¥ì‹œ 0
 			key = _getch();
 
 			if (((key == 'w') && (key_temp == 's')) || ((key == 's') && (key_temp == 'w')) || ((key == 'a') &&
 				(key_temp == 'd')) || ((key == 'd') && (key_temp == 'a'))) {
-				// ¹İ´ëÅ°¸¦ ´©¸£¸é ¹İ´ëÅ° ¹«½ÃÇÏ´Â ÇÔ¼ö È£Ãâ
+				// ë°˜ëŒ€í‚¤ë¥¼ ëˆ„ë¥´ë©´ ë°˜ëŒ€í‚¤ ë¬´ì‹œí•˜ëŠ” í•¨ìˆ˜ í˜¸ì¶œ
 				Ignore(&key);
 			}
 
 			if (key != 'w' && key != 'a' && key != 's' && key != 'd') {
-				//ÀÌ¿Ü Å°¸¦ ÀÔ·Â½Ã ÀÏ½ÃÁ¤Áö ÇÔ¼ö È£Ãâ
+				//ì´ì™¸ í‚¤ë¥¼ ì…ë ¥ì‹œ ì¼ì‹œì •ì§€ í•¨ìˆ˜ í˜¸ì¶œ
 				STOP(&key, key_temp);
 			}
 
@@ -124,7 +125,7 @@ int main(void) {
 		else {
 			SWITC(&key, &x, &y);
 		}
-		gotoxy(x, y, Count, "¡Ù");
+		gotoxy(x, y, Count, "â˜†");
 		result(&x, &y);
 
 		if ((snack[x][y] != 0) && (key != 0))
@@ -143,35 +144,35 @@ void gotoxy(int x, int y, int Count, char *s) {
 	cursorInfo.dwSize = 1;
 	cursorInfo.bVisible = FALSE;
 	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
-	//Ä¿¼­ ±¸Á¶Ã¼ ¼±¾ğ,Ä¿¼­ÀÇµÎ²² 1 ,Ä¿¼­¸¦ ¼û±è,½ÇÇà
+	//ì»¤ì„œ êµ¬ì¡°ì²´ ì„ ì–¸,ì»¤ì„œì˜ë‘ê»˜ 1 ,ì»¤ì„œë¥¼ ìˆ¨ê¹€,ì‹¤í–‰
 
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 	printf("%s", s);
 	if (Count > 0) {
-		//¸Ç ¸¶Áö¸· ²¿¸® ³¡À» Ã£´Â Á¶°Ç¹®
+		//ë§¨ ë§ˆì§€ë§‰ ê¼¬ë¦¬ ëì„ ì°¾ëŠ” ì¡°ê±´ë¬¸
 		if (snack[x - 1][y] == Count - 1) {
 			j++;
-			return gotoxy(x - 1, y, Count - 1, "¡Ù");
+			return gotoxy(x - 1, y, Count - 1, "â˜†");
 		}
 		else if (snack[x + 1][y] == Count - 1) {
 			j++;
-			return gotoxy(x + 1, y, Count - 1, "¡Ù");
+			return gotoxy(x + 1, y, Count - 1, "â˜†");
 		}
 		else if (snack[x][y - 1] == Count - 1) {
 			j++;
-			return gotoxy(x, y - 1, Count - 1, "¡Ù");
+			return gotoxy(x, y - 1, Count - 1, "â˜†");
 		}
 		else if (snack[x][y + 1] == Count - 1) {
 			j++;
-			return gotoxy(x, y + 1, Count - 1, "¡Ù");
+			return gotoxy(x, y + 1, Count - 1, "â˜†");
 		}
 		if (Gori == j) {
 			SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 			if ((R_x == x) && (R_y == y)) {
-				// Áö¿öÁö´Â À§Ä¡°¡ ·£´ı°ªÀÌ »ı¼ºµÇ´ÂÀ§Ä¡¸é ¾ÊµÊ
+				// ì§€ì›Œì§€ëŠ” ìœ„ì¹˜ê°€ ëœë¤ê°’ì´ ìƒì„±ë˜ëŠ”ìœ„ì¹˜ë©´ ì•Šë¨
 			}
 			else {
-				//·£´ı°ªÀÌ »ı¼º¾ÊµÇ´Â À§Ä¡¶ó¸é ¸¶Áö¸·ºÎºĞ Áö¿ì±â
+				//ëœë¤ê°’ì´ ìƒì„±ì•Šë˜ëŠ” ìœ„ì¹˜ë¼ë©´ ë§ˆì§€ë§‰ë¶€ë¶„ ì§€ìš°ê¸°
 				printf("%s", "  ");
 				snack[x][y] = 0;
 				j = 0;
@@ -181,16 +182,16 @@ void gotoxy(int x, int y, int Count, char *s) {
 	}
 	if (Count == -1) {
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
-		printf("%d/%d°³ ³²À½\n", Gori, Win_Count);
+		printf("å¾Œ%d/%då€‹ \n", Gori, Win_Count);
 	}
 	if (Count == -2) {
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
-		printf("ÇöÀç ¹è°æÀ½ : %s", File_Name);
+		printf("ç¾åœ¨ã®BGM : %s", File_Name);
 	}
 }
 
 void SWITC(char *sz, int*x, int*y) {
-	Sleep(SPEED - (Item_Speed*SIZE / 2)); // °ÔÀÓ¼Óµµ
+	Sleep(SPEED - (Item_Speed*SIZE / 2)); // ê²Œì„ì†ë„
 	switch (*sz) {
 	case 'w':
 		*y = *y - 1;
@@ -220,7 +221,7 @@ void SWITC(char *sz, int*x, int*y) {
 }
 
 void Ignore(char *key) {
-	//¹İ´ëÅ°¸¦ ÀÔ·Â½Ã ¹«½ÃÇÏ°í ³Ñ¾î°¡´Â ÇÔ¼ö
+	//ë°˜ëŒ€í‚¤ë¥¼ ì…ë ¥ì‹œ ë¬´ì‹œí•˜ê³  ë„˜ì–´ê°€ëŠ” í•¨ìˆ˜
 	switch (*key) {
 	case 'w':
 		*key = 's';
@@ -240,35 +241,37 @@ void Ignore(char *key) {
 }
 
 void STOP(char *Key, char Key_temp) {
-	//ÀÏ½ÃÁ¤Áö!
-	gotoxy(0, SIZE + 1, 0, "ÀÏ½ÃÁ¤Áö »óÅÂ ÀÔ´Ï´Ù \n (w , a , s , d) Å°Áß ÇÏ³ª¸¦ ´©¸¦½Ã ÀÏ½ÃÁ¤Áö°¡ Ç®¸³´Ï´Ù");
-	gotoxy(0, SIZE + 2, 0, "bgm ÀÏ½ÃÁ¤Áö(È¤Àº Á¦°ÅÈÄ ÇÃ·¹ÀÌ)¸¦ ¿øÇÒ½Ã(p), ÀÏ½ÃÁ¤Áö ÇØÁ¦¸¦ ¿øÇÒ½Ã(r) Å°¸¦ ´©¸£½Ã¿À\n");
-	printf("¸¶Áö¸·À¸·Î °¡´ø ¹æÇâ ( ");
+	//ì¼ì‹œì •ì§€!
+	gotoxy(0, SIZE + 1, 0, "Pause is active.");
+	gotoxy(0, SIZE + 2, 0, "Press (w , a , s , d) to restart the game");
+	gotoxy(0, SIZE + 3, 0, "bgm Remove And Play(p), BGM restart(r)\n");
+	printf("The direction you went last ( ");
 	if (Key_temp == 'w')
-		printf("¡è )");
+		printf("â†‘ )");
 	else if (Key_temp == 'a')
-		printf("¡ç )");
+		printf("â† )");
 	else if (Key_temp == 's')
-		printf("¡é )");
+		printf("â†“ )");
 	else if (Key_temp == 'd')
-		printf("¡æ )");
+		printf("â†’ )");
 
 	while (1) {
-		if (_kbhit()) {   //Å°¸¦ ÀÔ·Â½Ã 1, ºñÀÔ·Â½Ã 0
+		if (_kbhit()) {   //í‚¤ë¥¼ ì…ë ¥ì‹œ 1, ë¹„ì…ë ¥ì‹œ 0
 			*Key = _getch();
 			if (*Key == 'w' || *Key == 'a' || *Key == 's' || *Key == 'd') {
 				gotoxy(0, SIZE + 1, 0, "                         \n                                                       ");
 				gotoxy(0, SIZE + 2, 0, "                                                                                     ");
-				gotoxy(0, SIZE + 3, 0, "                            ");
-				//ÀÏ½ÃÁ¤Áö ¾Ë¸² ±ÛÀÚ Áö¿ì±â¿ë
+				gotoxy(0, SIZE + 3, 0, "                                                                    ");
+				gotoxy(0, SIZE + 4, 0, "                                                                    ");
+				//ì¼ì‹œì •ì§€ ì•Œë¦¼ ê¸€ì ì§€ìš°ê¸°ìš©
 				return;
 			}
 			else if (*Key == 'p') {
 				mciSendCommandW(dwID, MCI_PAUSE, MCI_NOTIFY,
-					(DWORD)(LPVOID)&m_mciPlayParms); /// ÀÏ½ÃÁ¤Áö
+					(DWORD)(LPVOID)&m_mciPlayParms); /// ì¼ì‹œì •ì§€
 			}
 			else if (*Key == 'r') {
-				mciSendCommandW(dwID, MCI_RESUME, 0, NULL); /// ´Ù½Ã½ÃÀÛ
+				mciSendCommandW(dwID, MCI_RESUME, 0, NULL); /// ë‹¤ì‹œì‹œì‘
 			}
 		}
 		Sleep(100);
@@ -277,73 +280,73 @@ void STOP(char *Key, char Key_temp) {
 
 void result(int *x, int *y) {
 	static int temp2 = 0, temp3 = 0;
-	//temp´Â ¸ÔÀÌ ¶Ç´Â ¾ÆÀÌÅÛÀ» ÇÑ¹ø¸¸ »ı¼ºÇÏ°ÔÇÏ´Â ÀÓ½Ã º¯¼ö
+	//tempëŠ” ë¨¹ì´ ë˜ëŠ” ì•„ì´í…œì„ í•œë²ˆë§Œ ìƒì„±í•˜ê²Œí•˜ëŠ” ì„ì‹œ ë³€ìˆ˜
 	if (*x == R_x && *y == R_y) {
 		PlaySound("mp3folder\\levv.wav", NULL, SND_ASYNC);
-		//¸ÔÀÌ ¸ÔÀ»¶§ ³ª´Â ¼Ò¸®
+		//ë¨¹ì´ ë¨¹ì„ë•Œ ë‚˜ëŠ” ì†Œë¦¬
 
 		while (1) {
 			Random_Creat(&R_x, &R_y);
 			if (Item_Slow_x != R_x && Item_Slow_y != R_y)
-				//¾ÆÀÌÅÛÀ§Ä¡¶û ¸ÔÀÌÀ§Ä¡°¡ °°Áö¾ÊÀ¸¸é ¹İº¹¹® Å»Ãâ
+				//ì•„ì´í…œìœ„ì¹˜ë‘ ë¨¹ì´ìœ„ì¹˜ê°€ ê°™ì§€ì•Šìœ¼ë©´ ë°˜ë³µë¬¸ íƒˆì¶œ
 				break;
 		}
 		Gori++, temp2 = 0, temp3 = 0;
-		gotoxy(R_x, R_y, 0, "¡Ú");
+		gotoxy(R_x, R_y, 0, "â˜…");
 		gotoxy(SIZE + 2, SIZE / 2, -1, 0);
 		gotoxy(0, SIZE + 1, 0, "                ");
-		//¾ÆÀÌÅÛÀ» ¸Ô°í³­ µÚ ´ÙÀ½ ¸ÔÀÌ¸¦ ¸ÔÀ»½Ã ±Û¾¾¸¦ Áö¿ì´Â ¿ëµµ
+		//ì•„ì´í…œì„ ë¨¹ê³ ë‚œ ë’¤ ë‹¤ìŒ ë¨¹ì´ë¥¼ ë¨¹ì„ì‹œ ê¸€ì”¨ë¥¼ ì§€ìš°ëŠ” ìš©ë„
 	}
 	if ((R_y % 14 == 0) && ((Item_Speed * 10) < SPEED - 50) && (temp3 == 0)) {
-		//if¹®ÀÇ % X ¸ÔÀÌ¸¦ ¸ÔÀ»°æ¿ì ¼Óµµ°¡ »¡¸®Áú È®·ü ¼³Á¤
-		gotoxy(0, SIZE + 1, 0, "¼Óµµ°¡ »¡¶óÁı´Ï´Ù");
+		//ifë¬¸ì˜ % X ë¨¹ì´ë¥¼ ë¨¹ì„ê²½ìš° ì†ë„ê°€ ë¹¨ë¦¬ì§ˆ í™•ë¥  ì„¤ì •
+		gotoxy(0, SIZE + 1, 0, "Speed Up");
 		Item_Speed++, temp3 = 1;
 	}
 	if (((R_x) % 16 == 0) && (temp2 == 0) && ((Item_Slow_x == 999) && (Item_Slow_y == 999))) {
-		// if¹®ÀÇ % X = ¾ÆÀÌÅÛ ³ª¿ÃÈ®·ü ¼³Á¤
+		// ifë¬¸ì˜ % X = ì•„ì´í…œ ë‚˜ì˜¬í™•ë¥  ì„¤ì •
 		temp2 = 1;
 		while (1) {
 			Random_Creat(&Item_Slow_x, &Item_Slow_y);
 			if ((R_x != Item_Slow_x) || (R_y != Item_Slow_y))
 				break;
-			//¸ÔÀÌÀ§Ä¡¶û ¾ÆÀÌÅÛÀ§Ä¡°¡ ´Ù¸¦½Ã ¹İº¹¹® Å»Ãâ
+			//ë¨¹ì´ìœ„ì¹˜ë‘ ì•„ì´í…œìœ„ì¹˜ê°€ ë‹¤ë¥¼ì‹œ ë°˜ë³µë¬¸ íƒˆì¶œ
 		}
-		gotoxy(Item_Slow_x, Item_Slow_y, 0, "¢¼");
-		// ¾ÆÀÌÅÛ »ı¼º
+		gotoxy(Item_Slow_x, Item_Slow_y, 0, "â™ ");
+		// ì•„ì´í…œ ìƒì„±
 	}
 
 	if ((*x == Item_Slow_x) && (*y == Item_Slow_y)) {
 		PlaySound("mp3folder\\lev.wav", NULL, SND_ASYNC);
-		//¾ÆÀÌÅÛ ¸ÔÀ»¶§ ³ª´Â ¼Ò¸®
-		gotoxy(0, SIZE + 1, 0, "¼Óµµ°¡ ´À·ÁÁı´Ï´Ù");
+		//ì•„ì´í…œ ë¨¹ì„ë•Œ ë‚˜ëŠ” ì†Œë¦¬
+		gotoxy(0, SIZE + 1, 0, "Speed Down");
 		Item_Speed--;
 		Item_Slow_x = -5, Item_Slow_y = -5;
-		// ´Ù¸¥ À§Ä¡µé°ú ¾È°ãÄ¡µµ·Ï ¾ÆÀÌÅÛÀ» ¸ÔÀºµÚ ÀÓ½Ã·Î-5·Î ÃÊ±âÈ­
+		// ë‹¤ë¥¸ ìœ„ì¹˜ë“¤ê³¼ ì•ˆê²¹ì¹˜ë„ë¡ ì•„ì´í…œì„ ë¨¹ì€ë’¤ ì„ì‹œë¡œ-5ë¡œ ì´ˆê¸°í™”
 	}
 	if (Gori == Win_Count) {
 		fail(2);
-		//²¿¸®°¡ Á¶°ÇÀ» ¸¸Á·ÇÒ½Ã °ÔÀÓÁ¾·á(½Â¸®)
+		//ê¼¬ë¦¬ê°€ ì¡°ê±´ì„ ë§Œì¡±í• ì‹œ ê²Œì„ì¢…ë£Œ(ìŠ¹ë¦¬)
 	}
 }
 
 void fail(int a) {
-	// Á¾·áµÇ´Â ÀÌÀ¯¸¦ ¸»ÇÏ°í Á¾·á°ªÀ» ÀúÀåÇÏ´Â ÇÔ¼ö
+	// ì¢…ë£Œë˜ëŠ” ì´ìœ ë¥¼ ë§í•˜ê³  ì¢…ë£Œê°’ì„ ì €ì¥í•˜ëŠ” í•¨ìˆ˜
 	if (a == 1) {
-		printf("º®¿¡ ºÎ‹HÇû½À´Ï´Ù\n");
+		printf("ë²½ì— ë¶€ë”«í˜”ìŠµë‹ˆë‹¤\n");
 		EXIT = 1;
 	}
 	if (a == 2) {
-		printf("½Â¸®!\n");
+		printf("ìŠ¹ë¦¬!\n");
 		EXIT = 2;
 	}
 	if (a == 3) {
-		printf("²¿¸®¹âÀ½");
+		printf("ê¼¬ë¦¬ë°ŸìŒ");
 		EXIT = 3;
 	}
 }
 
 void SERCH_FUN() {
-	//mp3 ÆÄÀÏ(¹è°æÀ½) Ã£´Â ÇÔ¼ö
+	//mp3 íŒŒì¼(ë°°ê²½ìŒ) ì°¾ëŠ” í•¨ìˆ˜
 	_finddata_t fd_mp3;
 	long handle_mp3;
 	int result1 = 1, result2 = 1, count = 0, Key_Count = 0;
@@ -351,29 +354,34 @@ void SERCH_FUN() {
 	char key = 0;
 
 	handle_mp3 = _findfirst("mp3folder\\*.mp3", &fd_mp3);
-	//¸ğµç mp3ÆÄÀÏÀ» Ã£´Â´Ù
+	//ëª¨ë“  mp3íŒŒì¼ì„ ì°¾ëŠ”ë‹¤
 	if (handle_mp3 == -1)
 		return;
 
-	printf("ÇöÀç Æú´õ¿¡ ÀÖ´Â ÆÄÀÏ\n\n");
+	//printf("í˜„ì¬ í´ë”ì— ìˆëŠ” íŒŒì¼\n\n");
+	printf("ç¾åœ¨ãƒ•ã‚©ãƒ«ãƒ€ã«ã‚ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«\n\n");
 
 	if (handle_mp3 != -1) {
 		while (result1 > -1) {
 			if (fd_mp3.size > 0 || fd_mp3.size != NULL) {
-				//printf("  ÆÄÀÏ¸í: %s\n", fd_mp3.name, fd_mp3.size);  // ÆÄÀÏ¸¸ º¸°í½ÍÀ»½Ã
-				printf("  ÆÄÀÏ¸í: %-15s  | Å©±â: %-10dbit |\n", fd_mp3.name, fd_mp3.size); //Å©±âµµ º¸°í½ÍÀ¸¸é
+				//printf("  íŒŒì¼ëª…: %s\n", fd_mp3.name, fd_mp3.size);  // íŒŒì¼ë§Œ ë³´ê³ ì‹¶ì„ì‹œ
+				//printf("  íŒŒì¼ëª…: %-15s  | í¬ê¸°: %-10dbit |\n", fd_mp3.name, fd_mp3.size); //í¬ê¸°ë„ ë³´ê³ ì‹¶ìœ¼ë©´
+				printf("  ãƒ•ã‚¡ã‚¤ãƒ«å: %-15s  | ã‚µã‚¤ã‚º: %-10dbit |\n", fd_mp3.name, fd_mp3.size); //í¬ê¸°ë„ ë³´ê³ ì‹¶ìœ¼ë©´
 				memcpy(temp[count], fd_mp3.name, FILE_SIZE);
 				count++;
-				//ÆÄÀÏ °¹¼ö Ä«¿îÆ®
+				//íŒŒì¼ ê°¯ìˆ˜ ì¹´ìš´íŠ¸
 			}
 			result1 = _findnext(handle_mp3, &fd_mp3);
 		}
 	}
 
-	printf("\nÃÑ %d°³ ÀÖ½À´Ï´Ù.\n", count);
+	//printf("\nì´ %dê°œ ìˆìŠµë‹ˆë‹¤.\n", count);
+	printf("\nå…¨éƒ¨ %då€‹ ã‚ã‚Šã¾ã™.\n", count);
 	printf("================================================================");
-	printf("\nW = À§ÂÊ    S = ¾Æ·¡ÂÊ\n");
-	printf("Space bar = ¼±ÅÃ\n");
+	//printf("\nW = ìœ„ìª½    S = ì•„ë˜ìª½\n");
+	printf("\nW = ä¸Š    S = ä¸‹\n");
+	//printf("Space bar = ì„ íƒ\n");
+	printf("Space bar = Start\n");
 	printf("================================================================");
 	while (Boolean) {
 		Sleep(50);
@@ -391,15 +399,15 @@ void SERCH_FUN() {
 
 	strcat_s(ADDRESS, temp[Key_Count]);
 	strcat_s(File_Name, temp[Key_Count]);
-	//printf("%s", ADDRESS); // °æ·Î Ãâ·Â
+	//printf("%s", ADDRESS); // ê²½ë¡œ ì¶œë ¥
 
-	//printf("¼±ÅÃÇÑ ³ë·¡ Á¦¸ñ:%s", temp[Key_Count]);
-	//printf("// %s //", ADDRESS); // ÀúÀåµÈ À§Ä¡±îÁö º¸°í½ÍÀ»½Ã
+	//printf("ì„ íƒí•œ ë…¸ë˜ ì œëª©:%s", temp[Key_Count]);
+	//printf("// %s //", ADDRESS); // ì €ì¥ëœ ìœ„ì¹˜ê¹Œì§€ ë³´ê³ ì‹¶ì„ì‹œ
 
 }
 
 void MP3_SWITCH(char *Select, int *Up_Down, int count) {
-	//¹è°æÀ½ °í¸£´Â ¼±ÅÃÃ¢ gotoxy
+	//ë°°ê²½ìŒ ê³ ë¥´ëŠ” ì„ íƒì°½ gotoxy
 	MP3_gotoxy(*Up_Down, 1);
 	switch (*Select) {
 	case 'w':
@@ -425,13 +433,13 @@ void MP3_SWITCH(char *Select, int *Up_Down, int count) {
 }
 
 void Sound_Play() {
-	//mp3(¹è°æÀ½) Ãâ·Â ÇÔ¼ö
+	//mp3(ë°°ê²½ìŒ) ì¶œë ¥ í•¨ìˆ˜
 	Boolean = True;
 	char Serch[4] = { 0 };
 	int temp = 0;
 	mciOpen.lpstrDeviceType = "mpegvideo"; // mpegvideo : mp3, waveaudio : wav, avivideo : avi
 										   //mciOpen.lpstrDeviceType = "waveaudio"; // mpegvideo : mp3, waveaudio : wav, avivideo : avi
-	mciOpen.lpstrElementName = ADDRESS; // ÆÄÀÏ °æ·Î ÀÔ·Â
+	mciOpen.lpstrElementName = ADDRESS; // íŒŒì¼ ê²½ë¡œ ì…ë ¥
 
 	while (1) {
 		if (ADDRESS[temp] == '\0') {
